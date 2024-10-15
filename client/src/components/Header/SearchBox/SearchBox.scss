@@ -1,0 +1,44 @@
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  color: #808089;
+  height: 40px;
+
+  &__icon {
+    padding-left: 20px;
+    margin: 8px 8px 8px 0;
+    font-size: 20px;
+  }
+
+  &__input {
+    flex-grow: 1;
+
+    input {
+      width: 100%;
+      border: 0px;
+      border-right: 1px solid #ddd;
+    }
+
+    .focus {
+      outline: none;
+    }
+  }
+
+  &__button {
+    &:hover {
+      background-color: rgba(10, 104, 255, 0.2);
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+
+    button {
+      background-color: transparent;
+      border: 0;
+      color: #0A68FF;
+      padding: 10px;
+    }
+  }
+}
