@@ -6,16 +6,28 @@ import {
   Rating,
 } from "@mui/material";
 import "./TopDealProductItem.scss";
+import { Typography } from "antd";
+import { memo } from "react";
+
+const { Paragraph } = Typography;
 
 function TopDealProductItem({ item }) {
   return (
-    <>
-      <Card sx={{ maxWidth: 345 }}>
+    <div>
+      <Card sx={{ maxWidth: 200, margin: "5px", height: "100%" }}>
         <CardActionArea>
-          <CardMedia component="img" height="140" image={item.thumbnail_url} alt="green iguana" />
+          <CardMedia
+            component="img"
+            height="140"
+            image={item.thumbnail_url}
+            alt="green iguana"
+            style={{ objectFit: "contain", objectPosition: "center"}}
+          />
           <CardContent>
             <div>
-              <h6 id="title">{item.name}</h6>
+              <Paragraph ellipsis={{ rows: 2, tooltip: `${item.name}` }} id="title">
+                {item.name}
+              </Paragraph>
               <Rating defaultValue={item.rating_average} precision={0.1} />
               <div id="price">{item.price}đ</div>
               <span id="discount">-{item.discount_rate}%</span>
@@ -27,8 +39,8 @@ function TopDealProductItem({ item }) {
           </CardContent>
         </CardActionArea>
       </Card>
-    </>
+    </div>
   );
 }
 
-export default TopDealProductItem;
+export default memo(TopDealProductItem);

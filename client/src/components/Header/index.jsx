@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import SearchBox from "./SearchBox";
 import "./Header.scss";
+import { memo } from "react";
 
 const arr = [
   "điện gia dụng",
@@ -82,42 +83,42 @@ function Header() {
           <div className="header-2">
             <h5 className="header-2__title">Cam kết</h5>
             <ul className="header-2__list">
-              <li>
+              <li key={1}>
                 <img
                   src="https://salt.tikicdn.com/ts/upload/96/76/a3/16324a16c76ee4f507d5777608dab831.png"
                   alt=""
                 />
                 <span>100% hàng thật</span>
               </li>
-              <li>
+              <li key={2}>
                 <img
                   src="https://salt.tikicdn.com/ts/upload/11/09/ec/456a2a8c308c2de089a34bbfef1c757b.png"
                   alt=""
                 />
                 <span>Freeship mọi đơn</span>
               </li>
-              <li>
+              <li key={3}>
                 <img
                   src="https://salt.tikicdn.com/ts/upload/0b/f2/19/c03ae8f46956eca66845fb9aaadeca1e.png"
                   alt=""
                 />
                 <span>Hoàn 200$ nếu hàng giả</span>
               </li>
-              <li>
+              <li key={4}>
                 <img
                   src="https://salt.tikicdn.com/ts/upload/3a/f4/7d/86ca29927e9b360dcec43dccb85d2061.png"
                   alt=""
                 />
                 <span>30 ngày đổi trả</span>
               </li>
-              <li>
+              <li key={5}>
                 <img
                   src="https://salt.tikicdn.com/ts/upload/87/98/77/fc33e3d472fc4ce4bae8c835784b707a.png"
                   alt=""
                 />
                 <span>Giao nhanh 2h</span>
               </li>
-              <li>
+              <li key={6}>
                 <img
                   src="https://salt.tikicdn.com/ts/upload/6a/81/06/0675ef5512c275a594d5ec1d58c37861.png"
                   alt=""
@@ -132,4 +133,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default memo(Header);

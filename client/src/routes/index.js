@@ -1,8 +1,11 @@
-import HomePage from "../pages/HomePage";
+import DefaultLayout from "../Layout/DefaultLayout";
 
 export const routes = [
   {
     path: "/",
-    element: <HomePage />
+    element: <DefaultLayout />,
+    children: [
+      
+    ]
   }
 ]

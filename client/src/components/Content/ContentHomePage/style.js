@@ -1,3 +1,4 @@
+import Slider from "react-slick";
 import styled from "styled-components"
 
 export const ImageSlide = styled.img`
@@ -10,6 +11,9 @@ export const ImageSlide = styled.img`
 export const SlideItem = styled.div`
   width: 90%;
   height: 90%;
+  padding: 10px;
+`;
+export const SliderStyled = styled(Slider)`
   padding: 10px;
 `;
 

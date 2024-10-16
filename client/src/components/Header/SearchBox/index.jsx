@@ -1,5 +1,6 @@
 import { SearchOutlined } from "@ant-design/icons";
 import "./SearchBox.scss"
+import { memo } from "react";
 
 function SearchBox() {
   const onFocus = () => {
@@ -29,4 +30,4 @@ function SearchBox() {
   );
 }
 
-export default SearchBox;
+export default memo(SearchBox);
