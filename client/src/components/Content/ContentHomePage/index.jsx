@@ -44,7 +44,7 @@ function ContentHomePage() {
   };
 
   return (
-    <>
+    <div className="container" style={{ marginTop: "20px" }}>
       <div className="content__carousel">
         <Slider {...settings}>
           {slickList.map((item, index) => {
@@ -95,7 +95,7 @@ function ContentHomePage() {
           </Row> */}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 export default memo(ContentHomePage);

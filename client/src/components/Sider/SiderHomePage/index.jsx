@@ -16,7 +16,7 @@ function SiderHomePage() {
   }, []);
 
   return (
-    <>
+    <div className="container" style={{ width: "230px", marginTop: "20px" }}>
       <div className="sider__category">
         <h5>Danh mục</h5>
         <ul>
@@ -43,7 +43,7 @@ function SiderHomePage() {
           })}
         </ul>
       </div>
-    </>
+    </div>
   );
 }
 
