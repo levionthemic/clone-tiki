@@ -93,7 +93,7 @@ function Footer() {
               </div>
 
               <h5>Tải ứng dụng trên điện thoại</h5>
-              <div>
+              <div className="application">
                 <img src={img8} alt="" />
                 <div>
                   <img src={img6} alt="" />
