@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Header from "../../components/Header";
-import { Footer } from "antd/es/layout/layout";
+import Footer from "../../components/Footer"
 
 
 function DefaultLayout() {

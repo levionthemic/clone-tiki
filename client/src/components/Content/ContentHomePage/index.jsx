@@ -44,7 +44,7 @@ function ContentHomePage() {
   };
 
   return (
-    <div className="container" style={{ marginTop: "20px" }}>
+    <div className="content">
       <div className="content__carousel">
         <Slider {...settings}>
           {slickList.map((item, index) => {

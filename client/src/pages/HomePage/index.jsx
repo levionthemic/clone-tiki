@@ -6,10 +6,10 @@ function HomePage() {
   return (
     <>
       <Row>
-        <Col span={5}>
+        <Col span={4}>
           <SiderHomePage />
         </Col>
-        <Col span={19}>
+        <Col span={19} offset={1}>
           <ContentHomePage />
         </Col>
       </Row>
