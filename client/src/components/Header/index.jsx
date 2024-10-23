@@ -9,7 +9,7 @@ import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import SearchBox from "./SearchBox";
 import "./Header.scss";
 import { memo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { open } from "../../redux/slices/loginModalSlice";
 import Login from "../../pages/Login";
 
@@ -64,8 +64,8 @@ function Header() {
               </Row>
               <Row className="header-1__row2">
                 <Col span={16} className="header-1__row2__list">
-                  {arr.map((item) => {
-                    return <a href="/">{item}</a>;
+                  {arr.map((item, index) => {
+                    return <a href="/" key={index}>{item}</a>;
                   })}
                 </Col>
                 <Col span={8}>

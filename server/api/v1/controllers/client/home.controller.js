@@ -9,7 +9,7 @@ module.exports.index = (req, res) => {
 
 // [GET] /api/v1/categories
 module.exports.getCategories = async (req, res) => {
-  const categories = await Category.find({});
+  const categories = await Category.find({}).select("icon_url text -_id");
 
   res.json({
     code: 200,

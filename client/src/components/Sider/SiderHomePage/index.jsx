@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchSuccess } from "../../../redux/slices/categorySiderSlice";
 
 function SiderHomePage() {
-  const categories = useSelector((state) => state.categorySider.value.payload);
+  const categories = useSelector((state) => state.categorySider.value);
   const dispatch = useDispatch();
   // const [utils, setUtils] = useState([]);
 
@@ -33,10 +33,10 @@ function SiderHomePage() {
         <ul>
           {categories ? (
             <>
-              {categories.map((item, index) => {
+              {categories.payload.map((item) => {
                 return (
-                  <li key={index}>
-                    <Link to={item.link} className="link-category">
+                  <li key={item.id}>
+                    <Link to={`http://localhost:3000/categories/${item.id}`} className="link-category">
                       <img src={item.icon_url} alt="icon" />
                       <span>{item.text}</span>
                     </Link>

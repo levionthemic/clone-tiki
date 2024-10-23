@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import "./TopDealProductItem.scss";
 import { Typography } from "antd";
-import { memo } from "react";
+import React from "react";
 
 const { Paragraph } = Typography;
 
@@ -43,4 +43,4 @@ function TopDealProductItem({ item }) {
   );
 }
 
-export default memo(TopDealProductItem);
+export default React.memo(TopDealProductItem);

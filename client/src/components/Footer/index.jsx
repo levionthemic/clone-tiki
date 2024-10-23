@@ -9,6 +9,7 @@ import img5 from "../../assets/images/e71563afb23e3f34a148fe1b7d3413c5.png";
 import img6 from "../../assets/images/appstore.png";
 import img8 from "../../assets/images/qrcode.png";
 import img7 from "../../assets/images/playstore.png";
+import React from "react";
 
 function Footer() {
   return (
@@ -389,4 +390,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default React.memo(Footer);
