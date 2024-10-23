@@ -6,12 +6,16 @@ const clientRoutes = require("./api/v1/routes/client/index.route");
 
 const bodyParser = require("body-parser");
 
+const cors = require("cors");
+
 const database = require("./config/database");
 
 const app = express();
 const port = process.env.PORT;
 
 app.use(bodyParser.json());
+
+app.use(cors());
 
 database.connect();
 

@@ -5,33 +5,55 @@ import "./ContentHomePage.scss";
 import TopDealProductItem from "./TopDealProductItem";
 
 function ContentHomePage() {
-  const [slickList, setSlickList] = useState([]);
-  const [quickLinks, setQuickLinks] = useState([]);
-  const [topDeals, setTopDeals] = useState([]);
+  const [slickList, setSlickList] = useState(
+    JSON.parse(localStorage.getItem("slickList"))
+  );
+  const [quickLinks, setQuickLinks] = useState(
+    JSON.parse(localStorage.getItem("quickLinks"))
+  );
+  const [topDeals, setTopDeals] = useState(
+    JSON.parse(localStorage.getItem("topDeals"))
+  );
 
   useEffect(() => {
-    fetch("http://localhost:3001/content-slick")
-      .then((res) => res.json())
-      .then((data) => {
-        setSlickList(data.data[0].banners);
-      });
+    if (!localStorage.getItem("slickList")) {
+      fetch("http://localhost:3001/content-slick")
+        .then((res) => res.json())
+        .then((data) => {
+          localStorage.setItem(
+            "slickList",
+            JSON.stringify(data.data[0].banners)
+          );
+          setSlickList(data.data[0].banners);
+        });
+    }
+    if (!localStorage.getItem("quickLinks")) {
+      fetch("http://localhost:3001/content-quick-link")
+        .then((res) => res.json())
+        .then((data) => {
+          localStorage.setItem("quickLinks", JSON.stringify(data.items));
+          setQuickLinks(data.items);
+        });
+    }
+    if (!localStorage.getItem("topDeals")) {
+      fetch("http://localhost:3001/content-top-deal")
+        .then((res) => res.json())
+        .then((data) => {
+          localStorage.setItem("topDeals", JSON.stringify(data.items));
+          setTopDeals(data.items);
+        });
+    }
   }, []);
 
-  useEffect(() => {
-    fetch("http://localhost:3001/content-quick-link")
-      .then((res) => res.json())
-      .then((data) => {
-        setQuickLinks(data.items);
-      });
-  }, []);
-
-  useEffect(() => {
-    fetch("http://localhost:3001/content-top-deal")
-      .then((res) => res.json())
-      .then((data) => {
-        setTopDeals(data.items);
-      });
-  }, []);
+  // useEffect(() => {
+  //   if (topDeals) return;
+  //   fetch("http://localhost:3001/content-top-deal")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       localStorage.setItem("topDeals", data.items);
+  //       setTopDeals();
+  //     });
+  // }, [topDeals]);
 
   var settings = {
     dots: true,
@@ -47,24 +69,36 @@ function ContentHomePage() {
     <div className="content">
       <div className="content__carousel">
         <Slider {...settings}>
-          {slickList.map((item, index) => {
-            return (
-              <SlideItem key={index}>
-                <ImageSlide src={item.image_url} alt="" />
-              </SlideItem>
-            );
-          })}
+          {slickList ? (
+            <>
+              {slickList.map((item, index) => {
+                return (
+                  <SlideItem key={index}>
+                    <ImageSlide src={item.image_url} alt="" />
+                  </SlideItem>
+                );
+              })}
+            </>
+          ) : (
+            <></>
+          )}
         </Slider>
       </div>
       <div className="content__quicklink">
-        {quickLinks.map((item, index) => (
+        {quickLinks ? (
           <>
-            <div className="content__quicklink-item" key={index}>
-              <img src={item.thumbnail_url} alt="" />
-              <span>{item.name}</span>
-            </div>
+            {quickLinks.map((item, index) => (
+              <>
+                <div className="content__quicklink-item" key={index}>
+                  <img src={item.thumbnail_url} alt="" />
+                  <span>{item.name}</span>
+                </div>
+              </>
+            ))}
           </>
-        ))}
+        ) : (
+          <></>
+        )}
       </div>
       <div className="content__topdeal">
         <div className="content__topdeal-title">
@@ -81,9 +115,15 @@ function ContentHomePage() {
             slidesToShow={6}
             slidesToScroll={6}
           >
-            {topDeals.map((item, index) => {
-              return <TopDealProductItem item={item} key={index} />;
-            })}
+            {topDeals ? (
+              <>
+                {topDeals.map((item, index) => {
+                  return <TopDealProductItem item={item} key={index} />;
+                })}
+              </>
+            ) : (
+              <></>
+            )}
           </SliderStyled>
 
           {/* <Row>

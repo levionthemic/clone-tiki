@@ -9,6 +9,9 @@ import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import SearchBox from "./SearchBox";
 import "./Header.scss";
 import { memo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { open } from "../../redux/slices/loginModalSlice";
+import Login from "../../pages/Login";
 
 const arr = [
   "điện gia dụng",
@@ -21,6 +24,8 @@ const arr = [
 ];
 
 function Header() {
+  const dispatch = useDispatch();
+
   return (
     <>
       {/* Section 1 */}
@@ -45,10 +50,11 @@ function Header() {
                       <HomeFilled style={{ fontSize: "20px" }} />
                       <span style={{ paddingLeft: "10px" }}>Trang chủ</span>
                     </div>
-                    <div>
+                    <div onClick={() => dispatch(open())}>
                       <SmileOutlined style={{ fontSize: "20px" }} />
                       <span style={{ paddingLeft: "5px" }}>Tài khoản</span>
                     </div>
+                    <Login />
                     <div></div>
                     <div>
                       <ShoppingCartOutlined className="icon-cart" />
