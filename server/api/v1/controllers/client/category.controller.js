@@ -24,7 +24,8 @@ module.exports.index = async (req, res) => {
   const data = result.map((item) => ({
     key: `${item.id}`,
     label: item.name,
-    children: item.children.map((i) => ({ key: `${i.id}`, label: i.name })),
+    thumbnail: item.thumbnail_url,
+    children: item.children ? item.children.map((i) => ({ key: `${i.id}`, label: i.name })) : null,
   }));
 
   res.json({

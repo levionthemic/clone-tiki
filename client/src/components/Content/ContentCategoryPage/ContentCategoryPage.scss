@@ -1,0 +1,56 @@
+@mixin commonDiv() {
+  background-color: white;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+}
+
+.content {
+  &__title {
+    @include commonDiv();
+  }
+
+  &__category {
+    @include commonDiv();
+
+    &-list {
+      margin-top: 20px;
+      list-style-type: none;
+      display: flex;
+      align-items: center;
+      gap: 80px;
+
+      li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+
+        div {
+          img {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            object-fit: cover;
+            filter: brightness(1) invert(0.04);
+          }
+        }
+
+        p {
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  &__filter {
+    @include commonDiv();
+  }
+
+  &__products {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}

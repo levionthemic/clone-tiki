@@ -1,6 +1,7 @@
-import { Menu } from "antd";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useState } from "react";
+import { StyledMenu } from "./style";
+import "./SiderCategoryPage.scss";
+import CategoryContext from "../../../pages/CategoryPage/CategoryContext";
 
 const getLevelKeys = (items1) => {
   const key = {};
@@ -19,17 +20,8 @@ const getLevelKeys = (items1) => {
 };
 
 function SiderCategoryPage() {
-  const [menuItem, setMenuItem] = useState([]);
-  const categoryId = parseInt(useParams().categoryId);
-
-  useEffect(() => {
-    fetch("http://localhost:3002/api/v1/categories/" + categoryId)
-      .then((res) => res.json())
-      .then((data) => {
-        setMenuItem(data.data);
-      });
-  }, [categoryId]);
-
+  const { menuItem } = useContext(CategoryContext);
+  
   const levelKeys = getLevelKeys(menuItem);
 
   const [stateOpenKeys, setStateOpenKeys] = useState(["2", "23"]);
@@ -58,15 +50,16 @@ function SiderCategoryPage() {
   return (
     <>
       <div className="sider">
-        <div>Khám phá theo danh mục</div>
-        <Menu
+        <div className="title">Khám phá theo danh mục</div>
+        <StyledMenu
           mode="inline"
-          defaultSelectedKeys={["320"]}
+          defaultOpenKeys={["320"]}
           openKeys={stateOpenKeys}
           onOpenChange={onOpenChange}
           style={{
-            width: 256,
+            width: "100%",
             fontSize: "12px",
+            borderRight: 0,
           }}
           items={menuItem}
         />
