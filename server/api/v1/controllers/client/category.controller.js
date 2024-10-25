@@ -4,6 +4,7 @@ const Category = require("../../models/category.model");
 module.exports.index = async (req, res) => {
   const categoryId = parseInt(req.params.categoryId);
   const categories = await Category.find({});
+  let title = "";
 
   const getListChildCategories = (categories) => {
     if (!categories) {
@@ -11,6 +12,7 @@ module.exports.index = async (req, res) => {
     }
     for (const category of categories) {
       if (parseInt(category.id) == categoryId) {
+        title = category.text || category.name;
         return Array(category.children);
       }
       const result = getListChildCategories(category.children);
@@ -25,12 +27,17 @@ module.exports.index = async (req, res) => {
     key: `${item.id}`,
     label: item.name,
     thumbnail: item.thumbnail_url,
-    children: item.children ? item.children.map((i) => ({ key: `${i.id}`, label: i.name })) : null,
+    children: item.children
+      ? item.children.map((i) => ({ key: `${i.id}`, label: i.name }))
+      : null,
   }));
 
   res.json({
     code: 200,
     message: "Success",
-    data: data,
+    data: {
+      title: title,
+      data: data,
+    },
   });
 };

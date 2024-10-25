@@ -22,7 +22,7 @@ const getLevelKeys = (items1) => {
 function SiderCategoryPage() {
   const { menuItem } = useContext(CategoryContext);
   
-  const levelKeys = getLevelKeys(menuItem);
+  const levelKeys = getLevelKeys(menuItem.data);
 
   const [stateOpenKeys, setStateOpenKeys] = useState(["2", "23"]);
   const onOpenChange = (openKeys) => {
@@ -61,7 +61,7 @@ function SiderCategoryPage() {
             fontSize: "12px",
             borderRight: 0,
           }}
-          items={menuItem}
+          items={menuItem.data}
         />
       </div>
     </>

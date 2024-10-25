@@ -162,14 +162,6 @@ function ContentHomePage() {
           ) : (
             <></>
           )}
-
-          {/* <Row>
-            {topDeals.map((item) => (
-              <Col span={4}>
-                <TopDealProductItem item={item} />
-              </Col>
-            ))}
-          </Row> */}
         </div>
       </div>
     </div>

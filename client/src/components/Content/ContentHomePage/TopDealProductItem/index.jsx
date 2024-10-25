@@ -1,44 +1,58 @@
-import {
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Rating,
-} from "@mui/material";
+import Rating from "react-rating";
 import "./TopDealProductItem.scss";
 import { Typography } from "antd";
 import React from "react";
 
 const { Paragraph } = Typography;
 
+const priceToString = (price) => {
+  const str = `${price}`;
+  if (str.length <= 6)
+    return (
+      str.slice(0, str.length - 3) +
+      "." +
+      str.slice(str.length - 3, str.length)
+    );
+  return (
+    str.slice(0, str.length - 6) +
+    "." +
+    str.slice(str.length - 6, str.length - 3) +
+    "." +
+    str.slice(str.length - 3, str.length)
+  );
+};
+
 function TopDealProductItem({ item }) {
   return (
     <div>
-      <Card sx={{ maxWidth: 200, margin: "5px", height: "100%" }}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="140"
-            image={item.thumbnail_url}
-            alt="green iguana"
-            style={{ objectFit: "contain", objectPosition: "center"}}
-          />
-          <CardContent>
-            <div>
-              <Paragraph ellipsis={{ rows: 2, tooltip: `${item.name}` }} id="title">
-                {item.name}
-              </Paragraph>
-              <Rating defaultValue={item.rating_average} precision={0.1} />
-              <div id="price">{item.price}đ</div>
-              <span id="discount">-{item.discount_rate}%</span>
-              <span id="old-price">{item.original_price}đ</span>
-            </div>
-            <div id="note">
-              <span>Giao thứ 4, 23/10</span>
-            </div>
-          </CardContent>
-        </CardActionArea>
-      </Card>
+      <div
+        className="card"
+        style={{ maxWidth: 200, margin: "5px", aspectRatio: "1/2" }}
+      >
+        <img className="card-img-top" src={item.thumbnail_url} alt="" />
+        <div className="card-body">
+          <div>
+            <Paragraph
+              ellipsis={{ rows: 2, tooltip: `${item.name}` }}
+              id="title"
+            >
+              {item.name}
+            </Paragraph>
+            <Rating
+              emptySymbol="fa-regular fa-star"
+              fullSymbol="fa-solid fa-star"
+              initialRating={item["rating_average"]}
+              readonly
+            />
+            <div id="price">{priceToString(item.price)}<sup>đ</sup></div>
+            <span id="discount">-{item.discount_rate}%</span>
+            <span id="old-price">{priceToString(item.original_price)}<sup>đ</sup></span>
+          </div>
+          <div id="note">
+            <span>Giao thứ 4, 23/10</span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 
 function CategoryPage() {
 
-  const [menuItem, setMenuItem] = useState([]);
+  const [menuItem, setMenuItem] = useState({});
   const categoryId = parseInt(useParams().categoryId);
 
   useEffect(() => {

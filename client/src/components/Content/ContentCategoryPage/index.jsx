@@ -27,12 +27,12 @@ function ContentCategoryPage() {
     <div className="content">
       <div className="container">
         <div className="content__title">
-          <h2>Nhà sách Tiki</h2>
+          <h2>{menuItem.title}</h2>
         </div>
         <div className="content__category">
           <h5>Khám phá theo danh mục</h5>
           <ul className="content__category-list">
-            {menuItem.map((item) => (
+            {menuItem.data.map((item) => (
               <li key={item.key}>
                 <div>
                   <img src={item.thumbnail} alt="" />
