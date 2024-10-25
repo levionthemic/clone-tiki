@@ -5,7 +5,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import ProductItem from "../../ProductItem";
 
-function ContentCategoryPage() {
+function ContentCategoryPage({ menuTitle }) {
   const { menuItem } = useContext(CategoryContext);
   const categoryId = parseInt(useParams().categoryId);
 
@@ -27,12 +27,12 @@ function ContentCategoryPage() {
     <div className="content">
       <div className="container">
         <div className="content__title">
-          <h2>{menuItem.title}</h2>
+          <h2>{menuTitle}</h2>
         </div>
         <div className="content__category">
           <h5>Khám phá theo danh mục</h5>
           <ul className="content__category-list">
-            {menuItem.data.map((item) => (
+            {menuItem.map((item) => (
               <li key={item.key}>
                 <div>
                   <img src={item.thumbnail} alt="" />

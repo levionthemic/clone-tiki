@@ -12,6 +12,7 @@ import { memo } from "react";
 import { useDispatch } from "react-redux";
 import { open } from "../../redux/slices/loginModalSlice";
 import Login from "../../pages/Login";
+import { useNavigate } from "react-router-dom";
 
 const arr = [
   "điện gia dụng",
@@ -25,6 +26,7 @@ const arr = [
 
 function Header() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -32,7 +34,11 @@ function Header() {
       <header>
         <div className="container">
           <Row className="header-1" gutter={[50, 20]}>
-            <Col className="header-1__icon" span={3}>
+            <Col
+              className="header-1__icon"
+              span={3}
+              onClick={() => navigate("/")}
+            >
               <img
                 src="https://salt.tikicdn.com/ts/upload/0e/07/78/ee828743c9afa9792cf20d75995e134e.png"
                 alt="Logo"
@@ -65,7 +71,11 @@ function Header() {
               <Row className="header-1__row2">
                 <Col span={16} className="header-1__row2__list">
                   {arr.map((item, index) => {
-                    return <a href="/" key={index}>{item}</a>;
+                    return (
+                      <a href="/" key={index}>
+                        {item}
+                      </a>
+                    );
                   })}
                 </Col>
                 <Col span={8}>

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { StyledMenu } from "./style";
 import "./SiderCategoryPage.scss";
 import CategoryContext from "../../../pages/CategoryPage/CategoryContext";
@@ -22,9 +22,16 @@ const getLevelKeys = (items1) => {
 function SiderCategoryPage() {
   const { menuItem } = useContext(CategoryContext);
   
-  const levelKeys = getLevelKeys(menuItem.data);
+  const levelKeys = getLevelKeys(menuItem);
 
-  const [stateOpenKeys, setStateOpenKeys] = useState(["2", "23"]);
+  const [stateOpenKeys, setStateOpenKeys] = useState(menuItem.length ? [menuItem[0].key] : [""]);
+  
+  useEffect(() => {
+    if (menuItem.length) {
+      setStateOpenKeys(menuItem[0].key);
+    }
+  }, [menuItem]);
+
   const onOpenChange = (openKeys) => {
     const currentOpenKey = openKeys.find(
       (key) => stateOpenKeys.indexOf(key) === -1
@@ -53,15 +60,15 @@ function SiderCategoryPage() {
         <div className="title">Khám phá theo danh mục</div>
         <StyledMenu
           mode="inline"
-          defaultOpenKeys={["320"]}
+          defaultOpenKeys={menuItem.length ? [menuItem[0].key] : [""]}
           openKeys={stateOpenKeys}
           onOpenChange={onOpenChange}
           style={{
             width: "100%",
-            fontSize: "12px",
+            fontSize: "12.5px",
             borderRight: 0,
           }}
-          items={menuItem.data}
+          items={menuItem}
         />
       </div>
     </>

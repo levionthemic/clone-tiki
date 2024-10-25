@@ -14,17 +14,23 @@
     @include commonDiv();
 
     &-list {
+      padding-left: auto;
+      padding-right: auto;
       margin-top: 20px;
       list-style-type: none;
       display: flex;
-      align-items: center;
-      gap: 80px;
+      align-items: start;
+      justify-content: start;
+      flex-wrap: wrap;
+      gap: 30px;
 
       li {
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         gap: 10px;
+        width: calc(100% / 6);
 
         div {
           img {
@@ -38,6 +44,8 @@
 
         p {
           font-weight: 500;
+          white-space: wrap;
+          text-align: center
         }
       }
     }

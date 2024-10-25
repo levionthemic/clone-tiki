@@ -1,20 +1,22 @@
 import { Row, Col } from "antd";
 import SiderCategoryPage from "../../components/Sider/SiderCategoryPage";
 import ContentCategoryPage from "../../components/Content/ContentCategoryPage";
-import { memo, useEffect, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import CategoryContext from "./CategoryContext";
 import { useParams } from "react-router-dom";
 
 function CategoryPage() {
 
-  const [menuItem, setMenuItem] = useState({});
+  const [menuItem, setMenuItem] = useState([]);
+  const menuTitle = useRef("");
   const categoryId = parseInt(useParams().categoryId);
 
   useEffect(() => {
     fetch("http://localhost:3002/api/v1/categories/" + categoryId)
       .then((res) => res.json())
       .then((data) => {
-        setMenuItem(data.data);
+        menuTitle.current = data.data.title;
+        setMenuItem(data.data.data);
       });
   }, [categoryId]);
 
@@ -25,7 +27,7 @@ function CategoryPage() {
           <SiderCategoryPage />
         </Col>
         <Col span={19} offset={1}>
-          <ContentCategoryPage />
+          <ContentCategoryPage menuTitle={menuTitle.current} />
         </Col>
       </Row>
     </CategoryContext.Provider>
