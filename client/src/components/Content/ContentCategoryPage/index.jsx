@@ -29,26 +29,33 @@ function ContentCategoryPage({ menuTitle }) {
         <div className="content__title">
           <h2>{menuTitle}</h2>
         </div>
-        <div className="content__category">
-          <h5>Khám phá theo danh mục</h5>
-          <ul className="content__category-list">
-            {menuItem.map((item) => (
-              <li key={item.key}>
-                <div>
-                  <img src={item.thumbnail} alt="" />
-                </div>
-                <p>{item.label}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {menuItem && (
+          <div className="content__category">
+            <h5>Khám phá theo danh mục</h5>
+            <ul className="content__category-list">
+              {menuItem.map((item) => (
+                <li key={item.key}>
+                  <div>
+                    <img src={item.thumbnail} alt="" />
+                  </div>
+                  <p>{item.label}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         <div className="content__filter">
           <h5>Tất cả sản phẩm</h5>
         </div>
 
         <div className="content__products">
           {productList.map((product) => (
-            <ProductItem item={product} key={product.id} className="content__products-item"/>
+            <ProductItem
+              item={product}
+              key={product.id}
+              className="content__products-item"
+            />
           ))}
         </div>
       </div>

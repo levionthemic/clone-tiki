@@ -1,7 +1,10 @@
 import "./ProductItem.scss";
 import Rating from "react-rating";
+import { useNavigate } from "react-router-dom";
 
 function ProductItem({ item }) {
+  const navigate = useNavigate();
+
   if (!item) return <></>;
 
   const priceToString = (price) => {
@@ -21,6 +24,12 @@ function ProductItem({ item }) {
     );
   };
 
+  
+
+  const handleClick = () => {
+    navigate("/products/detail/:id")
+  }
+
   return (
     <>
       <div
@@ -32,7 +41,9 @@ function ProductItem({ item }) {
           overflow: "hidden",
           aspectRatio: "1 / 2",
           marginBottom: "15px",
+          cursor: "pointer",
         }}
+        oncClick={handleClick}
       >
         <img src={item["thumbnail_url"]} className="card-img-top" alt="" />
         <div className="card-body">
@@ -43,7 +54,7 @@ function ProductItem({ item }) {
             </div>
             <div>-{item["discount_rate"]}%</div>
           </div>
-          <div className="card__brand"></div>
+          <div className="card__brand">{item.brand_name}</div>
           <div className="card__title">{item.name}</div>
           <div className="card__ratingSold">
             <Rating
