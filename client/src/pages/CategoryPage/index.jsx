@@ -3,7 +3,7 @@ import SiderCategoryPage from "../../components/Sider/SiderCategoryPage";
 import ContentCategoryPage from "../../components/Content/ContentCategoryPage";
 import { memo, useEffect, useRef, useState } from "react";
 import CategoryContext from "./CategoryContext";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function CategoryPage() {
   const [menuItem, setMenuItem] = useState([]);
@@ -12,7 +12,7 @@ function CategoryPage() {
   const categoryId = parseInt(useParams().categoryId);
 
   useEffect(() => {
-    fetch("http://localhost:3002/api/v1/categories/" + categoryId)
+    fetch("http://localhost:8002/api/v1/categories/" + categoryId)
       .then((res) => res.json())
       .then((data) => {
         menuTitle.current = data.data.title;
@@ -21,10 +21,19 @@ function CategoryPage() {
       });
   }, [categoryId]);
 
+  function itemRender(currentRoute, params, items, paths) {
+    const isLast = currentRoute?.path === items[items.length - 1]?.path;
+
+    return isLast ? (
+      <span>{currentRoute.title}</span>
+    ) : (
+      <Link to={currentRoute.path}>{currentRoute.title}</Link>
+    );
+  }
 
   return (
     <CategoryContext.Provider value={{ menuItem, setMenuItem }}>
-      <Breadcrumb items={breadcrumbItem.current} separator=">" style={{ color: "#808089" }} />
+      <Breadcrumb itemRender={itemRender} items={breadcrumbItem.current} separator=">" style={{ color: "#808089", padding: "10px 0" }} />
       {menuItem ? (
         <Row>
           <Col span={4}>

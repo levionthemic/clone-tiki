@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { StyledMenu } from "./style";
 import "./SiderCategoryPage.scss";
 import CategoryContext from "../../../pages/CategoryPage/CategoryContext";
+import { useNavigate } from "react-router-dom";
 
 const getLevelKeys = (items1) => {
   const key = {};
@@ -21,14 +22,16 @@ const getLevelKeys = (items1) => {
 
 function SiderCategoryPage() {
   const { menuItem } = useContext(CategoryContext);
+
+  const navigate = useNavigate();
   
   const levelKeys = getLevelKeys(menuItem);
 
-  const [stateOpenKeys, setStateOpenKeys] = useState(menuItem.length ? [menuItem[0].key] : [""]);
+  const [stateOpenKeys, setStateOpenKeys] = useState([""]);
   
   useEffect(() => {
     if (menuItem.length) {
-      setStateOpenKeys(menuItem[0].key);
+      setStateOpenKeys([menuItem[0].key, menuItem[0].children ? menuItem[0].children[0].key : ""]);
     }
   }, [menuItem]);
 
@@ -54,9 +57,13 @@ function SiderCategoryPage() {
     }
   };
 
+  const handleClick = (e) => {
+    navigate("/categories/" + e.key);
+  }
+
   return (
     <>
-      <div className="sider">
+      <div className="sider-category">
         <div className="title">Khám phá theo danh mục</div>
         <StyledMenu
           mode="inline"
@@ -69,6 +76,7 @@ function SiderCategoryPage() {
             borderRight: 0,
           }}
           items={menuItem}
+          onClick={handleClick}
         />
       </div>
     </>

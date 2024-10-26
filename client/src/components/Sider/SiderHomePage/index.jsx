@@ -12,7 +12,7 @@ function SiderHomePage() {
 
   useEffect(() => {
     if (!categories) {
-      fetch("http://localhost:3002/api/v1/categories")
+      fetch("http://localhost:8002/api/v1/categories")
         .then((res) => res.json())
         .then((data) => {
           dispatch(fetchSuccess(data.data));
@@ -36,7 +36,10 @@ function SiderHomePage() {
               {categories.payload.map((item) => {
                 return (
                   <li key={item.id}>
-                    <Link to={`http://localhost:3000/categories/${item.id}`} className="link-category">
+                    <Link
+                      to={`http://localhost:8000/categories/${item.id}`}
+                      className="link-category"
+                    >
                       <img src={item.icon_url} alt="icon" />
                       <span>{item.text}</span>
                     </Link>

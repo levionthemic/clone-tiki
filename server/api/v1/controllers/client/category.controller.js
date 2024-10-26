@@ -6,6 +6,7 @@ module.exports.index = async (req, res) => {
   const categories = await Category.find({});
   let title = "";
   let breadcrumb = [{
+    path: "/",
     title: "Trang chủ"
   }];
 
@@ -15,6 +16,7 @@ module.exports.index = async (req, res) => {
     }
     for (const category of categories) {
       breadcrumb.push({
+        path: `/categories/${category.id}`,
         title: category.name || category.text,
       });
       if (parseInt(category.id) == categoryId) {

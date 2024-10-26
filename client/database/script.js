@@ -2,7 +2,7 @@ const fs = require("fs");
 
 // Dữ liệu mẫu
 const arr = [];
-fetch("http://localhost:3001/content-top-deal")
+fetch("http://localhost:8001/content-top-deal")
   .then((res) => res.json())
   .then((data) => {
     data.items.forEach((item) => {

@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import "./ContentCategoryPage.scss";
 import CategoryContext from "../../../pages/CategoryPage/CategoryContext";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ProductItem from "../../ProductItem";
 
 function ContentCategoryPage({ menuTitle }) {
@@ -13,7 +13,7 @@ function ContentCategoryPage({ menuTitle }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await axios.get(`http://localhost:3002/api/v1/products`, {
+      const data = await axios.get(`http://localhost:8002/api/v1/products`, {
         params: {
           categoryId: categoryId,
         },
@@ -23,18 +23,20 @@ function ContentCategoryPage({ menuTitle }) {
     fetchData();
   }, [categoryId]);
 
+  const navigate = useNavigate();
+
   return (
-    <div className="content">
+    <div className="content-category">
       <div className="container">
-        <div className="content__title">
+        <div className="content-category__title">
           <h2>{menuTitle}</h2>
         </div>
         {menuItem && (
-          <div className="content__category">
+          <div className="content-category__category">
             <h5>Khám phá theo danh mục</h5>
-            <ul className="content__category-list">
+            <ul className="content-category__category-list" >
               {menuItem.map((item) => (
-                <li key={item.key}>
+                <li key={item.key} onClick={() => navigate(`/categories/${item.key}`)}>
                   <div>
                     <img src={item.thumbnail} alt="" />
                   </div>
@@ -45,16 +47,16 @@ function ContentCategoryPage({ menuTitle }) {
           </div>
         )}
 
-        <div className="content__filter">
+        <div className="content-category__filter">
           <h5>Tất cả sản phẩm</h5>
         </div>
 
-        <div className="content__products">
+        <div className="content-category__products">
           {productList.map((product) => (
             <ProductItem
               item={product}
               key={product.id}
-              className="content__products-item"
+              className="content-category__products-item"
             />
           ))}
         </div>
