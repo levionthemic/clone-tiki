@@ -1,0 +1,132 @@
+@mixin commonSection {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: white;
+  margin-bottom: 20px;
+}
+
+.section {
+  &__main {
+    @include commonSection();
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+
+    &-name {
+      color: #27272a;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    &-star {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      div {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+
+        span:nth-child(1) {
+          color: #27272a;
+          font-weight: 500;
+        }
+
+        span:nth-child(3) {
+          color: #787878;
+        }
+
+        &:nth-child(2),
+        &:nth-child(3) {
+          color: #787878;
+        }
+      }
+
+      span {
+        display: inline-block;
+      }
+    }
+
+    &-price {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      span {
+        display: block;
+        width: fit-content;
+        height: fit-content;
+      }
+
+      span:nth-child(1) {
+        color: #ff424e;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      span:nth-child(2) {
+        background: #f5f5fa;
+        padding: 0 4px;
+        border-radius: 5px;
+        color: #27272a;
+        font-size: 12px;
+      }
+
+      span:nth-child(3) {
+        color: #808089;
+        text-decoration: line-through;
+      }
+    }
+  }
+
+  &__info {
+    @include commonSection();
+
+    & > div:nth-child(1) {
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    & > div:nth-child(2) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      div:nth-child(2) {
+        color: #0a68ff;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  &__warranty {
+    @include commonSection();
+
+    & > div:nth-child(1) {
+      font-weight: bold;
+      font-size: 16px;
+    }
+  }
+
+  &__specification {
+    @include commonSection();
+
+    & > div:nth-child(1) {
+      font-weight: bold;
+      font-size: 16px;
+    }
+  }
+
+  &__desc {
+    @include commonSection();
+
+    & > div:nth-child(1) {
+      font-weight: bold;
+      font-size: 16px;
+    }
+  }
+}
