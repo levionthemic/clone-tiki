@@ -3,6 +3,10 @@ const Product = require("../../models/product.model");
 // [GET] /api/v1/products
 module.exports.index = async (req, res) => {
   const categoryId = req.query.categoryId;
+  const productId = req.query.productId;
+  
+  let objectFind = {};
+
 
   const regex = new RegExp(`/${categoryId}`);
 

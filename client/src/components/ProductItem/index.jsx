@@ -27,7 +27,7 @@ function ProductItem({ item }) {
   
 
   const handleClick = () => {
-    navigate("/products/detail/:id")
+    navigate(`/products/detail/${item["_id"]}`);
   }
 
   return (
@@ -43,7 +43,7 @@ function ProductItem({ item }) {
           marginBottom: "15px",
           cursor: "pointer",
         }}
-        oncClick={handleClick}
+        onClick={handleClick}
       >
         <img src={item["thumbnail_url"]} className="card-img-top" alt="" />
         <div className="card-body">

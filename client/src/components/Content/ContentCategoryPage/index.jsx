@@ -55,7 +55,7 @@ function ContentCategoryPage({ menuTitle }) {
           {productList.map((product) => (
             <ProductItem
               item={product}
-              key={product.id}
+              key={product["_id"]}
               className="content-category__products-item"
             />
           ))}
