@@ -89,7 +89,7 @@ function ContentHomePage() {
 
   useEffect(() => {
     if (!localStorage.getItem("topDeals")) {
-      fetch("http://localhost:8001/content-top-deal")
+      fetch("http://localhost:8001/api/v1/products/topdeal")
         .then((res) => res.json())
         .then((data) => {
           localStorage.setItem("topDeals", JSON.stringify(data.items));
@@ -97,16 +97,6 @@ function ContentHomePage() {
         });
     }
   }, []);
-
-  // useEffect(() => {
-  //   if (topDeals) return;
-  //   fetch("http://localhost:3001/content-top-deal")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       localStorage.setItem("topDeals", data.items);
-  //       setTopDeals();
-  //     });
-  // }, [topDeals]);
 
   var settings = {
     dots: true,

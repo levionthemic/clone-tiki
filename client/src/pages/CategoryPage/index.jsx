@@ -12,7 +12,7 @@ function CategoryPage() {
   const categoryId = parseInt(useParams().categoryId);
 
   useEffect(() => {
-    fetch("http://localhost:8002/api/v1/categories/" + categoryId)
+    fetch("http://localhost:8001/api/v1/categories/" + categoryId)
       .then((res) => res.json())
       .then((data) => {
         menuTitle.current = data.data.title;

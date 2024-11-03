@@ -12,7 +12,7 @@ function SiderHomePage() {
 
   useEffect(() => {
     if (!categories) {
-      fetch("http://localhost:8002/api/v1/categories")
+      fetch("http://localhost:8001/api/v1/categories")
         .then((res) => res.json())
         .then((data) => {
           dispatch(fetchSuccess(data.data));

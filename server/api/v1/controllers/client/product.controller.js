@@ -1,5 +1,6 @@
 const Product = require("../../models/product.model");
 const ProductDetail = require("../../models/product-detail.model");
+const TopDeal = require("../../models/topdeal.model");
 
 // [GET] /api/v1/products
 module.exports.index = async (req, res) => {
@@ -29,18 +30,28 @@ module.exports.detail = async (req, res) => {
   const product = await ProductDetail.findOne({
     _id: productId,
   });
-  
+
   if (product) {
     res.json({
       code: 200,
       message: "success",
-      product: product
+      product: product,
     });
   } else {
     res.json({
       code: 400,
-      message: "error"
-    })
+      message: "error",
+    });
   }
-  
+};
+
+// [GET] /api/v1/products/topdeal
+module.exports.topdeal = async (req, res) => {
+  const topdeals = await TopDeal.find({});
+
+  res.json({
+    code: 200,
+    message: "Success",
+    data: topdeals,
+  });
 };

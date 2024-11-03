@@ -7,4 +7,6 @@ routes.get("/", controller.index);
 
 routes.get("/detail/:productId", controller.detail);
 
+routes.get("/topdeal", controller.topdeal);
+
 module.exports = routes;

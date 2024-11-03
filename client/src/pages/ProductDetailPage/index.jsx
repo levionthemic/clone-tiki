@@ -10,12 +10,13 @@ function ProductDetailPage() {
   const productId = useParams().productId;
 
   useEffect(() => {
-    fetch(`http://localhost:8002/api/v1/products/detail/${productId}`)
+    fetch(`http://localhost:8001/api/v1/products/detail/${productId}`)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         setProduct(data.product);
       });
-  }, [productId]);
+  }, []);
 
   return (
     <>

@@ -13,7 +13,7 @@ function ContentCategoryPage({ menuTitle }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await axios.get(`http://localhost:8002/api/v1/products`, {
+      const data = await axios.get(`http://localhost:8001/api/v1/products`, {
         params: {
           categoryId: categoryId,
         },
