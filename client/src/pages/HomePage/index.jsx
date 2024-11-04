@@ -4,7 +4,7 @@ import ContentHomePage from "../../components/Content/ContentHomePage";
 
 function HomePage() {
   return (
-    <>
+    <div>
       <Row>
         <Col span={4}>
           <SiderHomePage />
@@ -13,7 +13,7 @@ function HomePage() {
           <ContentHomePage />
         </Col>
       </Row>
-    </>
+    </div>
   );
 }
 

@@ -9,4 +9,6 @@ routes.get("/detail/:productId", controller.detail);
 
 routes.get("/topdeal", controller.topdeal);
 
+routes.get("/search", controller.search);
+
 module.exports = routes;

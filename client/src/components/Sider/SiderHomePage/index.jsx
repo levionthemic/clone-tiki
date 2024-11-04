@@ -27,7 +27,7 @@ function SiderHomePage() {
   }, [categories, dispatch]);
 
   return (
-    <div className="sider">
+    <div className="sider position-sticky">
       <div className="sider__category">
         <h5>Danh mục</h5>
         <ul>

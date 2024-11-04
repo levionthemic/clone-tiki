@@ -5,7 +5,7 @@ import Footer from "../../components/Footer"
 
 function DefaultLayout() {
   return (
-    <>
+    <div style={{ position: "relative"}}>
       <Header />
       <main>
         <div className="container">
@@ -13,7 +13,7 @@ function DefaultLayout() {
         </div>
       </main>
       <Footer />
-    </>
+    </div>
   )
 }
 

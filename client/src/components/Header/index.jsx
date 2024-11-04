@@ -1,4 +1,4 @@
-import { Col, Row } from "antd";
+import { Badge, Col, Row } from "antd";
 import {
   HomeFilled,
   ShoppingCartOutlined,
@@ -28,6 +28,22 @@ function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const handleCartClick = () => {
+    let isLogin = false;
+    const arr = document.cookie.split("; ");
+    for (const item of arr) {
+      const [key] = item.split("=");
+      if (key === "token") {
+        isLogin = true;
+      }
+    }
+    if (!isLogin) {
+      dispatch(open());
+    } else {
+      navigate("/cart")
+    }
+  };
+
   return (
     <>
       {/* Section 1 */}
@@ -46,13 +62,13 @@ function Header() {
               <span>Tốt & Nhanh</span>
             </Col>
             <Col span={21}>
-              <Row className="header-1__row1">
+              <Row className="header-1__row1 my-2">
                 <Col span={16}>
                   <SearchBox />
                 </Col>
                 <Col span={8}>
                   <div className="header-1__row1__list">
-                    <div>
+                    <div onClick={() => { navigate("/")}}>
                       <HomeFilled style={{ fontSize: "20px" }} />
                       <span style={{ paddingLeft: "10px" }}>Trang chủ</span>
                     </div>
@@ -62,13 +78,15 @@ function Header() {
                     </div>
                     <Login />
                     <div></div>
-                    <div>
-                      <ShoppingCartOutlined className="icon-cart" />
+                    <div onClick={handleCartClick}>
+                      <Badge count={0} showZero offset={[5, -5]}>
+                        <ShoppingCartOutlined className="icon-cart" />
+                      </Badge>
                     </div>
                   </div>
                 </Col>
               </Row>
-              <Row className="header-1__row2">
+              <Row className="header-1__row2 my-2">
                 <Col span={16} className="header-1__row2__list">
                   {arr.map((item, index) => {
                     return (
