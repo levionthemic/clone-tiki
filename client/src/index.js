@@ -7,11 +7,12 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import storePersistor from "./redux/store";
+import { Spin } from "antd";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={storePersistor.store}>
-    <PersistGate loading={null} persistor={storePersistor.persistor}>
+    <PersistGate loading={<Spin />} persistor={storePersistor.persistor}>
       <BrowserRouter>
         <App />
       </BrowserRouter>

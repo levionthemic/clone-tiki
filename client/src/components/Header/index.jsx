@@ -10,7 +10,7 @@ import SearchBox from "./SearchBox";
 import "./Header.scss";
 import { memo } from "react";
 import { useDispatch } from "react-redux";
-import { open } from "../../redux/slices/loginModalSlice";
+import { openPhoneNumber } from "../../redux/slices/loginModalSlice";
 import Login from "../../pages/Login";
 import { useNavigate } from "react-router-dom";
 
@@ -38,7 +38,7 @@ function Header() {
       }
     }
     if (!isLogin) {
-      dispatch(open());
+      dispatch(openPhoneNumber());
     } else {
       navigate("/cart")
     }
@@ -72,7 +72,7 @@ function Header() {
                       <HomeFilled style={{ fontSize: "20px" }} />
                       <span style={{ paddingLeft: "10px" }}>Trang chủ</span>
                     </div>
-                    <div onClick={() => dispatch(open())}>
+                    <div onClick={() => dispatch(openPhoneNumber())}>
                       <SmileOutlined style={{ fontSize: "20px" }} />
                       <span style={{ paddingLeft: "5px" }}>Tài khoản</span>
                     </div>

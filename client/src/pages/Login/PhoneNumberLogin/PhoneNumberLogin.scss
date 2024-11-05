@@ -1,4 +1,4 @@
-.inner-wrap {
+.inner-wrap-phone {
   display: flex;
   align-items: center;
   height: 500px;
@@ -20,6 +20,10 @@
         outline: none;
         border-bottom: 1px solid #ddd;
         font-size: 20px;
+
+        &:focus {
+          box-shadow: none;
+        }
       }
 
       button {
@@ -48,6 +52,7 @@
 
     .inner-options {
       height: fit-content;
+      margin-top: 50px;
 
       .inner-title {
         text-align: center;

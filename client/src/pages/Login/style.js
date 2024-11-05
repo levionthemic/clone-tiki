@@ -19,5 +19,6 @@ export const CustomModal = styled(Modal)`
 
     &:hover {
       background-color: rgba(0, 0, 0, 0);
+    }
   }
 `;
